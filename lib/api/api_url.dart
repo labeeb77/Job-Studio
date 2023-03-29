@@ -5,4 +5,5 @@ class ApiConfig {
   static String signUp = "/api/v1/auth/register";
   static String otp = "/api/v1/auth/verify";
   static String recruiterProfile ="/api/v1/user/recruiter";
+  static String createVacancy = "/api/v1/jobs";
 }

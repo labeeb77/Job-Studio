@@ -19,7 +19,8 @@ class RecruiterProfileService{
         log(response.data.toString());
       }
     }on DioError catch(e){
-      log("dio error occure");
+      log("dio error occure in Add recruiter profile");
+      log("${e.message}");
     }
 
     
