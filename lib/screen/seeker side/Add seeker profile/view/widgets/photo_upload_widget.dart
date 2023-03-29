@@ -14,31 +14,32 @@ class PhotoUploadWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 120),
-      child: Container(
-        height: MediaQuery.of(context).size.width - 250,
-        width: MediaQuery.of(context).size.width - 250,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(180),
-          image: DecorationImage(
-              image: FileImage(
-                context.watch<ProfileProvider>().photo,
-              ),
-              fit: BoxFit.cover),
-        ),
-        child: Align(
-          alignment: Alignment.bottomRight,
-          child: Container(
-              padding: const EdgeInsets.all(2),
-              decoration: BoxDecoration(
-                  color: themeColor, borderRadius: BorderRadius.circular(100)),
-              child: IconButton(
-                  onPressed: () async {
-                    await getImage(context);
-                  },
-                  icon: const Icon(
-                    Icons.edit,
-                    color: kWhiteColor,
-                  ))),
+      child: Consumer<ProfileProvider>(
+        builder: (context, value, child) => 
+         Container(
+          height: MediaQuery.of(context).size.width - 250,
+          width: MediaQuery.of(context).size.width - 250,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(180),
+            image: DecorationImage(
+                image:  FileImage(value.photo),
+                fit: BoxFit.cover),
+          ),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                    color: themeColor, borderRadius: BorderRadius.circular(100)),
+                child: IconButton(
+                    onPressed: () async {
+                      await getImage(context);
+                    },
+                    icon: const Icon(
+                      Icons.edit,
+                      color: kWhiteColor,
+                    ))),
+          ),
         ),
       ),
     );
@@ -49,11 +50,12 @@ class PhotoUploadWidget extends StatelessWidget {
     final photo = await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (photo == null) {
-      log('image is null');
+      
+      log("image is null");
       return;
     } else {
       log('image not null');
-      final photoTemp = File(photo.path);
+      final photoTemp = File(photo.path) ;
       Provider.of<ProfileProvider>(context, listen: false).setPhoto(photoTemp);
     }
   }

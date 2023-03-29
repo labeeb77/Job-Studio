@@ -6,7 +6,7 @@ class ProfileProvider with ChangeNotifier{
 
   // Upload photo 
 
-  File? _photo;
+  File? _photo ;
 
   void setPhoto(File photo){
     _photo = photo;

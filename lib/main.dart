@@ -3,6 +3,7 @@ import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/auth/login/controller/login_provider.dart';
 import 'package:job_studio/screen/auth/otp%20screen/controller/otp_provider.dart';
 import 'package:job_studio/screen/auth/sign%20up/controller/provider.dart';
+import 'package:job_studio/screen/recruiter%20side/Add%20recruiter%20profile/controller/add_recru_profile.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controller/provider.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => OtpProvider(),),
         ChangeNotifierProvider(create: (context) => LoginProvider(),),
         ChangeNotifierProvider(create: (context) => BottomController(),),
-        ChangeNotifierProvider(create: (context) => LocalProvider(),)
+        ChangeNotifierProvider(create: (context) => LocalProvider(),),
+        ChangeNotifierProvider(create: (context) => AddRecrPforileProvider(),)
       ],
       child: OverlaySupport.global(
         child: MaterialApp(

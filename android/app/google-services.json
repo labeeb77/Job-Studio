@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "144461442403",
+    "firebase_url": "https://job-studio-fd692-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "job-studio-fd692",
+    "storage_bucket": "job-studio-fd692.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144461442403:android:4511556322ff6f6c4b3756",
+        "android_client_info": {
+          "package_name": "com.example.job_studio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144461442403-0m72c81pvftmjs1av2fbe68mv9e6tq9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpWMckFSYO4wmo2iBzjetwG1uTeFlbHBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "144461442403-0m72c81pvftmjs1av2fbe68mv9e6tq9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

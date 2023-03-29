@@ -8,6 +8,7 @@ class MyTextField extends StatelessWidget {
   final Widget prefixIcon;
   final String? Function(String?)? validator;
   final bool hasSuffixIcon;
+  final bool hasPrifixicon;
   final Widget suffixIcon;
 
   const MyTextField({
@@ -15,8 +16,9 @@ class MyTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     required this.obscureText,
-    required this.prefixIcon,
-    required this.validator,
+    this.prefixIcon = const SizedBox(),
+    this.hasPrifixicon = false,
+    this.validator,
     this.hasSuffixIcon = false, // default to false
     this.suffixIcon = const SizedBox(), // default to an empty SizedBox
   });
