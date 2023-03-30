@@ -15,8 +15,10 @@ class ScreenSplash extends StatelessWidget {
     Timer(const Duration(seconds: 3), () async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       bool seen = (prefs.getBool('seen') ?? false);
-      // ignore: use_build_context_synchronously
-      seen ? openHome(context) : gotoIntro(context);
+      
+      if(context.mounted){
+        seen ? openHome(context) : gotoIntro(context);
+      }
     });
     return Scaffold(
       body: SafeArea(
