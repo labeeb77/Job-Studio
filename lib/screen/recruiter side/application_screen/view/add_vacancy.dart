@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/text_field_widgte.dart';
-import 'package:job_studio/screen/recruiter%20side/Add%20recruiter%20profile/controller/add_recru_profile.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/vacancy_provider.dart';
 import 'package:provider/provider.dart';
 
