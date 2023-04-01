@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
-import 'package:job_studio/screen/recruiter%20side/home/view/home.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/seeker_application.dart';
 import 'package:job_studio/screen/seeker%20side/chat_screen/view/seeker_chat.dart';
 import 'package:job_studio/screen/seeker%20side/home/view/seeker_home.dart';
@@ -10,13 +8,13 @@ import 'package:job_studio/screen/seeker%20side/profile_screen/seeker_profile.da
 import 'package:provider/provider.dart';
 
 class BottomNavSeeker extends StatelessWidget {
-  const BottomNavSeeker({super.key});
+   const BottomNavSeeker({super.key});
 
   final screens = const [
     SeekerHomeScreen(),
     SeekerApplicationScreen(),
     SeekerChatScreen(),
-    SeekerProfileScreen()
+    SeekerProfile()
   ];
 
   @override

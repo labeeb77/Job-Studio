@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:job_studio/screen/auth/login/model/login_req_model.dart';
 import 'package:job_studio/screen/auth/login/service/login_service.dart';
-import 'package:job_studio/screen/select%20role%20screen/view/screen_selectrole.dart';
+import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottom_nav_bar.dart';
+import 'package:job_studio/screen/seeker%20side/bottom%20nav/bottom_nav_bar.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 class LoginProvider with ChangeNotifier {
   final FlutterSecureStorage loginStorage = const FlutterSecureStorage();
 
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   Future<void> checkLogin(context) async {
@@ -20,7 +22,7 @@ class LoginProvider with ChangeNotifier {
     log("entered to login function");
 
     final loginUser = LoginReqModel(email: email, password: password);
-    await LoginSevice().loginService(loginUser, context).then((value) {
+    await LoginSevice().loginService(loginUser, context).then((value) async {
       log("entered to login service");
 
       notifyListeners();
@@ -30,12 +32,25 @@ class LoginProvider with ChangeNotifier {
           key: "access_token",
           value: jsonEncode(value.accessToken),
         );
+        loginStorage.write(key: "role", value: jsonEncode(value.user.role));
+        log(value.user.role.toString());
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const SelectRoleScreen(),
-          ),
-        );
+        final checkRole = await loginStorage.read(key: "role");
+        log(checkRole.toString());
+
+        if (value.user.role == "recruiter") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const BottomNavRecruiter(),
+            ),
+          );
+        } else if (value.user.role == "seeker") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const BottomNavSeeker(),
+            ),
+          );
+        }
 
         emailController.clear();
         passwordController.clear();

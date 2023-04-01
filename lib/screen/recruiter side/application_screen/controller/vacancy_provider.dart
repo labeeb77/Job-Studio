@@ -16,9 +16,9 @@ class VacancyProvider with ChangeNotifier {
 
     final createVacancyModel = CreateVacancyModel(
       position: positionName,
-      salary: salary as int,
-      locationType: selectedLocationtype as String,
-      type: selectedJobType as String,
+      salary: salary ,
+      locationType: selectedLocationtype! ,
+      type: selectedJobType!,
       description: requirements,
     );
     CreateVacancyService().createVacancyService(createVacancyModel);

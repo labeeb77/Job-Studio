@@ -8,14 +8,14 @@ class RecruiterProfileModel {
     });
 
     String companyName;
-    EstablishedDate establishedDate;
+    String establishedDate;
     String companyEmail;
     String country;
     String address;
 
     factory RecruiterProfileModel.fromJson(Map<String, dynamic> json) => RecruiterProfileModel(
         companyName: json["company_name"],
-        establishedDate: EstablishedDate.fromJson(json["established_date"]),
+        establishedDate: json["established_date"],
         companyEmail: json["company_email"],
         country: json["country"],
         address: json["address"],
@@ -23,19 +23,10 @@ class RecruiterProfileModel {
 
     Map<String, dynamic> toJson() => {
         "company_name": companyName,
-        "established_date": establishedDate.toJson(),
+        "established_date": establishedDate,
         "company_email": companyEmail,
         "country": country,
         "address": address,
     };
 }
 
-class EstablishedDate {
-    EstablishedDate();
-
-    factory EstablishedDate.fromJson(Map<String, dynamic> json) => EstablishedDate(
-    );
-
-    Map<String, dynamic> toJson() => {
-    };
-}

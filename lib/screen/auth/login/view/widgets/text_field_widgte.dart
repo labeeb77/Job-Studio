@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 
 class MyTextField extends StatelessWidget {
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String hintText;
   final bool obscureText;
   final Widget prefixIcon;
@@ -13,7 +13,7 @@ class MyTextField extends StatelessWidget {
 
   const MyTextField({
     super.key,
-    required this.controller,
+     this.controller ,
     required this.hintText,
     required this.obscureText,
     this.prefixIcon = const SizedBox(),
@@ -28,6 +28,7 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+       
         controller: controller,
         validator: validator,
         obscureText: obscureText,

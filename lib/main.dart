@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/auth/login/controller/login_provider.dart';
@@ -7,12 +8,15 @@ import 'package:job_studio/screen/recruiter%20side/Add%20recruiter%20profile/con
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/vacancy_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controller/provider.dart';
+import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/service/firebase.dart';
 
 import 'package:job_studio/screen/splash%20screen/screen_splash.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -31,7 +35,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => BottomController(),),
         ChangeNotifierProvider(create: (context) => LocalProvider(),),
         ChangeNotifierProvider(create: (context) => AddRecrPforileProvider(),),
-        ChangeNotifierProvider(create: (context) => VacancyProvider(),)
+        ChangeNotifierProvider(create: (context) => VacancyProvider(),),
+        ChangeNotifierProvider(create: (context) => FirebaseProvider(),)
       ],
       child: OverlaySupport.global(
         child: MaterialApp(
@@ -41,7 +46,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.purple,
             
           ),
-          home:  const ScreenSplash(),
+          home:   const ScreenSplash(),
         ),
       ),
     );

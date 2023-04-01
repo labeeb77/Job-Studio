@@ -3,9 +3,9 @@ import 'package:job_studio/core/colors.dart';
 
 class BackButtonAndText extends StatelessWidget {
   final String headText;
- final Function()? onTap;
+  final Function()? onTap;
 
- const BackButtonAndText({
+  const BackButtonAndText({
     super.key,
     required this.headText,
     required this.onTap,
@@ -38,7 +38,7 @@ class BackButtonAndText extends StatelessWidget {
             width: 20,
           ),
           // Head Text
-           Text(
+          Text(
             headText,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),

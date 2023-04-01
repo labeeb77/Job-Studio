@@ -72,6 +72,8 @@ flutter:
     - assets/images/undraw_businessman_re_mlee.svg
     - assets/images/unknown_photo.png
     - assets/images/bell-ring.png
+    - assets/images/userProfile.jpg
+    - assets/images/notification.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

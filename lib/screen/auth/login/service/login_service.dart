@@ -11,7 +11,7 @@ import 'package:overlay_support/overlay_support.dart';
 class LoginSevice {
   Dio dio = Dio();
 
-  Future<LoginRespModel?> loginService(LoginReqModel model, context) async {
+  Future<LoginResModel?> loginService(LoginReqModel model, context) async {
     String path = ApiConfig.apiBaseUrl + ApiConfig.login;
     try {
       Response response =
@@ -19,13 +19,13 @@ class LoginSevice {
       if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.data.toString());
 
-        // log("no user with given email address is found");
+        
         if (response.data["status"] == 422) {
           log("wrong email and password");
           return null;
         } else {
-          final LoginRespModel loginResp =
-              LoginRespModel.fromJson(response.data);
+          final LoginResModel loginResp =
+              LoginResModel.fromJson(response.data);
           return loginResp;
         }
       }

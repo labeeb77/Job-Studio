@@ -8,7 +8,7 @@ class CreateVacancyModel {
     });
 
     String position;
-    int salary;
+    String salary;
     String locationType;
     String type;
     String description;
