@@ -16,7 +16,7 @@ class VacancyProvider with ChangeNotifier {
 
     final createVacancyModel = CreateVacancyModel(
       position: positionName,
-      salary: salary ,
+      salary: int.parse(salary)  ,
       locationType: selectedLocationtype! ,
       type: selectedJobType!,
       description: requirements,
