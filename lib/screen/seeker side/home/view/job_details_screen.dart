@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
+import 'package:job_studio/screen/seeker%20side/application_screen/view/job_apply_screen.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   const JobDetailsScreen({super.key});
@@ -64,7 +65,9 @@ class JobDetailsScreen extends StatelessWidget {
          MyButton(onTap: (){},
           buttonText: "SENT MESSAGE"),
            const SizedBox(height: 20,),
-         MyButton(onTap: (){},
+         MyButton(onTap: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const JobApplicationScreen(),));
+         },
           buttonText: "APPLY NOW"),
 
         ],

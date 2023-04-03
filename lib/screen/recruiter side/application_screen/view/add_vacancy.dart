@@ -63,6 +63,7 @@ class AddVacancyScreen extends StatelessWidget {
                 hintText: 'Salary',
                 prefixIcon: const Icon(Icons.attach_money_sharp),
                 obscureText: false,
+                keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Please enter salary";
@@ -173,6 +174,8 @@ class AddVacancyScreen extends StatelessWidget {
                 controller: value.requirementsController,
                 hintText: 'Requirements',
                 obscureText: false,
+                maxLines: 4,
+                minLines: 1,
                 prefixIcon: const Icon(Icons.description),
                 validator: (value) {
                   if (value == null || value.isEmpty) {

@@ -8,4 +8,5 @@ class ApiConfig {
   static String seekerProfile = "/api/v1/user/profile";
   static String createVacancy = "/api/v1/jobs";
   static String getJobVacany = "/api/v1/jobs";
+  static String jobVacancy = "/api/v1/jobs/";
 }

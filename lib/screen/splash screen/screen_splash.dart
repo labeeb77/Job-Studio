@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,14 +18,15 @@ class ScreenSplash extends StatelessWidget {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Future.delayed(const Duration(seconds: 1));
       FlutterSecureStorage storage = const FlutterSecureStorage();
-      String? accessToken = await storage.read(key: "access-token");
-      String? selectRole = await storage.read(key: "role");
+      String? accessToken = await storage.read(key: 'access_token');
+      String? selectRole = await storage.read(key: 'role');
+      log(selectRole!);
 
       if (accessToken == null) {
         if (context.mounted) {
           startingscreen(context);
         }
-      } else if (selectRole == '"Recruiter"') {
+      } else if (selectRole == '"recruiter"') {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const BottomNavRecruiter(),
@@ -69,17 +71,17 @@ class ScreenSplash extends StatelessWidget {
     );
   }
 
-  gotoIntro(context) async {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const IntroScreen(),
-    ));
-  }
+  // gotoIntro(context) async {
+  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //     builder: (context) => const IntroScreen(),
+  //   ));
+  // }
 
-  Future<void> openHome(context) async {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => ScreenLogin(),
-    ));
-  }
+  // Future<void> openHome(context) async {
+  //   Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //     builder: (context) => ScreenLogin(),
+  //   ));
+  // }
 
   Future<void> startingscreen(context) async {
     await Future.delayed(const Duration(seconds: 1));

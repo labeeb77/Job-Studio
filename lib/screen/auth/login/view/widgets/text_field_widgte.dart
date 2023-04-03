@@ -10,6 +10,11 @@ class MyTextField extends StatelessWidget {
   final bool hasSuffixIcon;
   final bool hasPrifixicon;
   final Widget suffixIcon;
+  final TextInputType? keyboardType;
+  final int? maxLines ;
+  final int? minLines;
+  final int? hintMaxLines;
+  final TextDirection? hintTextDirection;
 
   const MyTextField({
     super.key,
@@ -20,7 +25,12 @@ class MyTextField extends StatelessWidget {
     this.hasPrifixicon = false,
     this.validator,
     this.hasSuffixIcon = false, // default to false
-    this.suffixIcon = const SizedBox(), // default to an empty SizedBox
+    this.suffixIcon = const SizedBox(),
+    this.keyboardType ,
+    this.maxLines = 1,
+    this.minLines,
+    this.hintMaxLines,
+    this.hintTextDirection// default to an empty SizedBox
   });
 
   @override
@@ -32,7 +42,13 @@ class MyTextField extends StatelessWidget {
         controller: controller,
         validator: validator,
         obscureText: obscureText,
+        keyboardType: keyboardType,
+        maxLines: maxLines,
+        minLines: minLines,
+        
         decoration: InputDecoration(
+          hintTextDirection: hintTextDirection,
+          hintMaxLines: hintMaxLines,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25),
             borderSide: const BorderSide(
