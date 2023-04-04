@@ -11,6 +11,7 @@ import 'package:job_studio/screen/recruiter%20side/application_screen/view/add_v
 import 'package:job_studio/screen/recruiter%20side/application_screen/view/update_job.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RecruiterApplicScreen extends StatelessWidget {
   const RecruiterApplicScreen({super.key});
@@ -37,6 +38,7 @@ class RecruiterApplicScreen extends StatelessWidget {
           children: [
             const CupertinoSearchTextField(
               placeholder: 'Search',
+              
             ),
             const SizedBox(
               height: 5,
@@ -48,8 +50,54 @@ class RecruiterApplicScreen extends StatelessWidget {
                     builder: (context, value, deleteProvider, child) => value
                                 .isLoading ==
                             true
-                        ? const Center(
-                            child: CircularProgressIndicator(),
+                        ? Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) => Box(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(width: 16.0),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: double.infinity,
+                                              height: 8.0,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(height: 8.0),
+                                            Container(
+                                              width: double.infinity,
+                                              height: 8.0,
+                                              color: Colors.white,
+                                            ),
+                                            const SizedBox(height: 8.0),
+                                            Container(
+                                              width: 40.0,
+                                              height: 8.0,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              itemCount: 10,
+                            ),
                           )
                         : value.jobs == null
                             ? const Center(

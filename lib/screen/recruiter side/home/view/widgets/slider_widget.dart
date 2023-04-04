@@ -17,16 +17,33 @@ class SliderWidget extends StatelessWidget {
         builder: (context, value, child) {
           return
           value.isLoading == true
-          ? Shimmer.fromColors(
-            baseColor: Colors.grey[300]!,
-            highlightColor: Colors.grey[100]!,
-            child: const SizedBox(
-              width: double.infinity,
-              height: 100,
-            ),)
+          ? CarouselSlider.builder(
+            itemCount: 3, // Display 3 placeholder slides
+            itemBuilder: (context, index, realIndex) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey[300]!,
+                highlightColor: Colors.grey[100]!,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.white,
+                  ),
+                ),
+              );
+            },
+            options: CarouselOptions(
+              autoPlay: true,
+              enlargeCenterPage: true,
+              viewportFraction: 0.9,
+              aspectRatio: 2.0,
+              initialPage: 2,
+            ),
+          )
           : value.jobs == null
           ? const Text("erro getting jobs")
-          : CarouselSlider.builder(itemCount: 5,
+          : CarouselSlider.builder(
           itemBuilder: (context, index, realIndex) {
             final GetJobModel job = value.jobs![index];
             return  Box(
@@ -80,7 +97,8 @@ class SliderWidget extends StatelessWidget {
                   ),
                 ),
               );
-          },
+              
+          },itemCount: value.jobs!.length,
            options: CarouselOptions(  autoPlay: false,
             enlargeCenterPage: true,
               viewportFraction: 0.9,
