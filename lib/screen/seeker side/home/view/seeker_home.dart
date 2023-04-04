@@ -132,87 +132,82 @@ class SeekerHomeScreen extends StatelessWidget {
                       : ListView.builder(
                           itemBuilder: (context, index) {
                             final GetJobModel job = value.jobs![index];
-                            return InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      const JobDetailsScreen(),
-                                ));
-                              },
-                              child: Box(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      ListTile(
-                                        title: Text(
-                                          job.position,
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        subtitle: Row(
-                                          children: [
-                                            const Text("salary"),
-                                            const SizedBox(
-                                              width: 15,
-                                            ),
-                                            Text(
-                                              "${job.salary}",
-                                            ),
-                                          ],
-                                        ),
-                                        leading: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          child: Image.network(
-                                            "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
-                                            height: 50,
-                                          ),
-                                        ),
+                            return Box(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(
+                                        job.position,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500),
                                       ),
-                                      Row(
+                                      subtitle: Row(
                                         children: [
+                                          const Text("salary"),
                                           const SizedBox(
-                                            width: 50,
+                                            width: 15,
                                           ),
-                                          Box(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6,
-                                                      horizontal: 13),
-                                              child: Text(
-                                                job.type,
-                                                style: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ),
+                                          Text(
+                                            "${job.salary}",
                                           ),
-                                          const SizedBox(
-                                            width: 20,
-                                          ),
-                                          Box(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6,
-                                                      horizontal: 13),
-                                              child: Text(
-                                                job.locationType,
-                                                style: const TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ),
-                                          )
                                         ],
                                       ),
-                                    ],
-                                  ),
+                                      leading: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(20),
+                                        child: Image.network(
+                                          "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
+                                          height: 50,
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => JobDetailsScreen(job: job)));
+                                      },
+                                    ),
+                                    Row(
+                                      children: [
+                                        const SizedBox(
+                                          width: 50,
+                                        ),
+                                        Box(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 6,
+                                                    horizontal: 13),
+                                            child: Text(
+                                              job.type,
+                                              style: const TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight:
+                                                      FontWeight.w500),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Box(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                    vertical: 6,
+                                                    horizontal: 13),
+                                            child: Text(
+                                              job.locationType,
+                                              style: const TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight:
+                                                      FontWeight.w500),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             );

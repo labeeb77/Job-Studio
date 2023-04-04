@@ -38,7 +38,6 @@ class RecruiterApplicScreen extends StatelessWidget {
           children: [
             const CupertinoSearchTextField(
               placeholder: 'Search',
-              
             ),
             const SizedBox(
               height: 5,
@@ -63,7 +62,7 @@ class RecruiterApplicScreen extends StatelessWidget {
                                     children: [
                                       Container(
                                         width: 50.0,
-                                        height: 50.0,
+                                        height: 70.0,
                                         color: Colors.white,
                                       ),
                                       const SizedBox(width: 16.0),
@@ -96,7 +95,7 @@ class RecruiterApplicScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              itemCount: 10,
+                              itemCount: value.jobs!.length,
                             ),
                           )
                         : value.jobs == null
@@ -175,14 +174,16 @@ class RecruiterApplicScreen extends StatelessWidget {
                                                         child:
                                                             const Text("No")),
                                                     TextButton(
-                                                        onPressed: () {
+                                                        onPressed: ()async {
                                                           Provider.of<DeleteVacancyProvider>(
                                                                   context,
                                                                   listen: false)
                                                               .deleteVacancy(
                                                                   job.id);
-                                                          Navigator.pop(
+                                                                    Navigator.pop(
                                                               context);
+                                                                await  Provider.of<GetJobProvider>(context).fetchJobs();
+                                                      
                                                         },
                                                         child:
                                                             const Text("Yes"))
