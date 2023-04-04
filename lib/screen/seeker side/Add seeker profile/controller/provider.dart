@@ -30,7 +30,7 @@ class ProfileProvider with ChangeNotifier {
         address: address,
         occupation: occupation,
         profileImage:
-            Provider.of<FirebaseProvider>(context, listen: false).imageUrl);
+            Provider.of<FirebaseProvider>(context, listen: false).fileUrl);
 
     SeekerProfileService().seekerProfileService(createSeeker);
     log("Entered to create seeker function");
@@ -69,35 +69,7 @@ class ProfileProvider with ChangeNotifier {
     }
   }
 
-  //upload PDF
+ 
 
-  // Future pickFile(BuildContext context) async {
-  //   FilePickerResult? result = await FilePicker.platform.pickFiles(
-  //     type: FileType.custom,
-  //     allowedExtensions: ["pdf"],
-  //   );
 
-  //   if (result != null) {
-  //     pdfFile = File(result.files.single.path!);
-  //     pdfPath = File(result.files.single.name);
-  //     storage
-  //         .uploadToFirebase(pdfFile!.path, pdfPath.toString(), "test")
-  //         .then((value) => log("file stored in firebase"));
-  //     // ignore: use_build_context_synchronously
-  //     Navigator.of(context).pushReplacement(
-  //         MaterialPageRoute(builder: (context) => const ()));
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
-  // File? _photo ;
-
-  // void setPhoto(File photo){
-  //   _photo = photo;
-  //   notifyListeners();
-  // }
-  // File get photo {
-  //   return _photo ?? File('assets/images/unknown_photo.png');
-  // }
 }

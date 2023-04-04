@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class FirebaseProvider with ChangeNotifier {
   final FirebaseStorage storage = FirebaseStorage.instance;
-  String? imageUrl;
+  String? fileUrl;
 
   Future uploadToFirebase(
       String filePath, String fileName, String folderName) async {
@@ -14,7 +14,7 @@ class FirebaseProvider with ChangeNotifier {
     try {
       UploadTask uploadTask =
           storage.ref().child("$fileName/$fileName").putFile(file);
-      imageUrl = await (await uploadTask).ref.getDownloadURL();
+      fileUrl = await (await uploadTask).ref.getDownloadURL();
     } catch (e) {
       log(e.toString());
     }

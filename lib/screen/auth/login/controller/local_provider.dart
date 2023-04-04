@@ -1,26 +1,51 @@
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:job_studio/screen/seeker%20side/application_screen/view/job_apply_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../../../seeker side/Add seeker profile/service/firebase.dart';
 
 class LocalProvider with ChangeNotifier{
+ FirebaseProvider storage = FirebaseProvider();
 
   //password visibility
   bool isVisible = false;
+  File? pdfFile;
+  File? pdfPath;
 
   void toggleVisibility(){
     isVisible = !isVisible;
     notifyListeners();
   }
   
-  //PDF file picker
+   //upload PDF
 
-  File? _selectedFile;
-  File? get selectedFile => _selectedFile;
+  Future pickFile(BuildContext context) async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ["pdf"],
+    );
 
-  void setSelectedFile(File? file){
-    _selectedFile = file;
-    notifyListeners();
+    if (result != null) {
+      pdfFile = File(result.files.single.path!);
+      pdfPath = File(result.files.single.name);
+      storage
+          .uploadToFirebase(pdfFile!.path, pdfPath.toString(), "test")
+          .then((value) => log("file stored in firebase"));
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) =>  JobApplicationScreen()));
+    } else {
+      return null;
+    }
   }
+
+
+
+
 
   
 }
