@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "144461442403",
-    "firebase_url": "https://job-studio-fd692-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "job-studio-fd692",
-    "storage_bucket": "job-studio-fd692.appspot.com"
+    "project_number": "19376585414",
+    "project_id": "job-studio-129d9",
+    "storage_bucket": "job-studio-129d9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:144461442403:android:4511556322ff6f6c4b3756",
+        "mobilesdk_app_id": "1:19376585414:android:7f707d62bc2c6fe2ddb5c7",
         "android_client_info": {
           "package_name": "com.example.job_studio"
         }
       },
       "oauth_client": [
         {
-          "client_id": "144461442403-0m72c81pvftmjs1av2fbe68mv9e6tq9c.apps.googleusercontent.com",
+          "client_id": "19376585414-eu5r781e0g3nit7p357lpr0tfcb5rogb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpWMckFSYO4wmo2iBzjetwG1uTeFlbHBk"
+          "current_key": "AIzaSyBiDRyUgWJKsSYo0tdZbN5pOiaiabAAUVw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "144461442403-0m72c81pvftmjs1av2fbe68mv9e6tq9c.apps.googleusercontent.com",
+              "client_id": "19376585414-eu5r781e0g3nit7p357lpr0tfcb5rogb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

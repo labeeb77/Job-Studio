@@ -4,9 +4,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/job_apply_screen.dart';
-import 'package:provider/provider.dart';
 
-import '../../../seeker side/Add seeker profile/service/firebase.dart';
+import '../../../seeker side/application_screen/service/firebase.dart';
 
 class LocalProvider with ChangeNotifier{
  FirebaseProvider storage = FirebaseProvider();
@@ -24,7 +23,7 @@ class LocalProvider with ChangeNotifier{
    //upload PDF
 
   Future pickFile(BuildContext context) async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
+    FilePickerResult? result = await FilePicker.platform.pickFiles(allowMultiple: false,
       type: FileType.custom,
       allowedExtensions: ["pdf"],
     );
@@ -37,7 +36,7 @@ class LocalProvider with ChangeNotifier{
           .then((value) => log("file stored in firebase"));
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) =>  JobApplicationScreen()));
+          MaterialPageRoute(builder: (context) => const JobApplicationScreen(index: 0,)));
     } else {
       return null;
     }

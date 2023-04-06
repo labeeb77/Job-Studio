@@ -7,7 +7,7 @@ import 'package:job_studio/screen/seeker%20side/home/view/job_details_screen.dar
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SeekerHomeScreen extends StatelessWidget { 
+class SeekerHomeScreen extends StatelessWidget {
   const SeekerHomeScreen({super.key});
 
   @override
@@ -126,9 +126,7 @@ class SeekerHomeScreen extends StatelessWidget {
                       ),
                     )
                   : value.jobs == null
-                      ? const Center(
-                          child: Text("Error getting jobs"),
-                        )
+                      ? const SizedBox()
                       : ListView.builder(
                           itemBuilder: (context, index) {
                             final GetJobModel job = value.jobs![index];
@@ -156,15 +154,18 @@ class SeekerHomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                       leading: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(20),
                                         child: Image.network(
                                           "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
                                           height: 50,
                                         ),
                                       ),
                                       onTap: () {
-                                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => JobDetailsScreen(job: job)));
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    JobDetailsScreen(
+                                                        job: job)));
                                       },
                                     ),
                                     Row(
@@ -174,16 +175,13 @@ class SeekerHomeScreen extends StatelessWidget {
                                         ),
                                         Box(
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 6,
-                                                    horizontal: 13),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6, horizontal: 13),
                                             child: Text(
                                               job.type,
                                               style: const TextStyle(
                                                   fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.w500),
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                         ),
@@ -192,16 +190,13 @@ class SeekerHomeScreen extends StatelessWidget {
                                         ),
                                         Box(
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    vertical: 6,
-                                                    horizontal: 13),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6, horizontal: 13),
                                             child: Text(
                                               job.locationType,
                                               style: const TextStyle(
                                                   fontSize: 12,
-                                                  fontWeight:
-                                                      FontWeight.w500),
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                           ),
                                         )

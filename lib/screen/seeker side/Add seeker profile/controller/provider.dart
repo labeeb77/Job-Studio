@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/model/model.dart';
-import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/service/firebase.dart';
+import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/service/seeker_service.dart';
 import 'package:provider/provider.dart';
 

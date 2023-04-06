@@ -9,6 +9,7 @@ class GetJobProvider with ChangeNotifier{
   final GetJobService getJobService = GetJobService();
 
   List<GetJobModel>? jobs;
+  int? indexId = 0;
   bool isLoading = false;
  
 

@@ -7,8 +7,8 @@ import 'package:job_studio/screen/seeker%20side/application_screen/view/job_appl
 import 'package:provider/provider.dart';
 
 class JobDetailsScreen extends StatelessWidget {
-  final  GetJobModel job;
-   const JobDetailsScreen({super.key,required this.job});
+  final GetJobModel job;
+  const JobDetailsScreen({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
@@ -28,53 +28,77 @@ class JobDetailsScreen extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(
-                "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
-                height: 75,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: themeColor),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                  const SizedBox(
+              height: 20,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  "https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png",
+                  height: 75,
+                ),
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              job.position,
+              style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              job.locationType,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text("Job type"),
+                Text(
+                  job.type,
+                  style:
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text("Salary"),
+                Text(
+                  "${job.salary}",
+                  style:
+                      const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+              ],
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-           Text(
-            job.position,
-            style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-           Text(job.locationType),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:  [
-             const Text("Job type"),
-              Text(job.type),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:  [
-             const Text("Salary"),
-              Text("${job.salary}"),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
+        ),
           const Padding(
             padding: EdgeInsets.only(right: 200),
             child: Text(
@@ -85,16 +109,18 @@ class JobDetailsScreen extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.only(left: 30, right: 20),
             child: SizedBox(
               width: double.infinity,
-              child: Text(job.description
-                  ),
+              child: Text(
+                job.description,
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
           ),
           const SizedBox(
-            height: 60,
+            height: 80,
           ),
           MyButton(onTap: () {}, buttonText: "SENT MESSAGE"),
           const SizedBox(
@@ -103,7 +129,7 @@ class JobDetailsScreen extends StatelessWidget {
           MyButton(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const JobApplicationScreen(),
+                  builder: (context) => const JobApplicationScreen(index: 0,),
                 ));
               },
               buttonText: "APPLY NOW"),

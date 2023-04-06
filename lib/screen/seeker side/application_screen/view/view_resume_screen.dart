@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:provider/provider.dart';
