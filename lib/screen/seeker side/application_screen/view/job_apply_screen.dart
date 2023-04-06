@@ -8,7 +8,6 @@ import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/apply_job_provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/view_resume_screen.dart';
 import 'package:job_studio/screen/seeker%20side/bottom%20nav/bottom_nav_bar.dart';
-import 'package:job_studio/screen/seeker%20side/home/view/seeker_home.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 

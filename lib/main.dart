@@ -9,6 +9,7 @@ import 'package:job_studio/screen/recruiter%20side/application_screen/controller
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/get_job_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/vacancy_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
+import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controller/provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/apply_job_provider.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => FirebaseProvider(),),
         ChangeNotifierProvider(create: (context) => GetJobProvider(),),
         ChangeNotifierProvider(create: (context) => DeleteVacancyProvider(),),
-        ChangeNotifierProvider(create: (context) => ApplyJobProvider(),)
+        ChangeNotifierProvider(create: (context) => ApplyJobProvider(),),
+        ChangeNotifierProvider(create: (context) => AppliedPeopleProvider(),)
       ],
       child: OverlaySupport.global(
         child: MaterialApp(

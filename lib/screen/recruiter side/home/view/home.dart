@@ -1,6 +1,7 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
+import 'package:job_studio/screen/recruiter%20side/home/model/appleid_job_model.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/slider_widget.dart';
 import 'package:provider/provider.dart';
@@ -12,8 +13,12 @@ class RecruiterHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<GetJobProvider>(context, listen: false).fetchJobs();
+      final createProvider =
+          Provider.of<GetJobProvider>(context, listen: false).jobs![0];
+      Provider.of<AppliedPeopleProvider>(context, listen: false)
+          .fetchAppliedPoeple(createProvider.id);
     });
     return Scaffold(
       body: SafeArea(
@@ -38,10 +43,10 @@ class RecruiterHomeScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-       // carousel slider
+            // carousel slider
 
-  const  SliderWidget(),
-           
+            const SliderWidget(),
+
             const SizedBox(
               height: 10,
             ),
@@ -61,66 +66,82 @@ class RecruiterHomeScreen extends StatelessWidget {
                     child: Text('See all'),
                   ),
                 )
-              ], 
+              ],
             ),
             const SizedBox(
               height: 20,
             ),
-            Expanded(child: 
-            ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return  Box(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: const Text("Mohammed labeeb"),
-                      subtitle: const Text("Flutter developer"),
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
-                          "https://media.istockphoto.com/id/1200677760/photo/portrait-of-handsome-smiling-young-man-with-crossed-arms.jpg?s=612x612&w=0&k=20&c=g_ZmKDpK9VEEzWw4vJ6O577ENGLTOcrvYeiLxi8mVuo=",
-                          height: 50,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Box(
+            Expanded(
+                child: Consumer<AppliedPeopleProvider>(
+              builder: (context, value, child) {
+                
+                return value.appliedPeopleJob!.isEmpty
+                  ? const Center(child: Text("No applied people"),)
+                  : value.isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  :
+                  ListView.builder(
+                      itemBuilder: (context, index) {
+                        final GetAppliedPeopleModel appliedPerson =
+                            value.appliedPeopleJob![index];
+                        return Box(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 7, horizontal: 15),
-                            child: Text(
-                              "See detailes",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w500),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(appliedPerson.appliedBy.username),
+                                  subtitle:  Text(appliedPerson.profile[index].address),
+                                  leading: CircleAvatar(
+                                    radius: 30,
+                                    child: appliedPerson.profile[index].profileImage == null || index >= value.appliedPeopleJob!.length || appliedPerson.profile == null || appliedPerson.profile.isEmpty
+                                    ? Image.asset("assets/images/man.png")
+                                    : CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: Image.network(value.appliedPeopleJob![index].profile[index].profileImage).image,
+                                    )
+                                  )
+                                ),
+                                Row(
+                                  children: const [
+                                    SizedBox(
+                                      width: 50,
+                                    ),
+                                    Box(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 7, horizontal: 15),
+                                        child: Text(
+                                          "See detailes",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    ),
+                                    Box(
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 7, horizontal: 15),
+                                        child: Text(
+                                          "See Resume",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                        Box(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 7, horizontal: 15),
-                            child: Text(
-                              "See Resume",
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            );
-              },)),
-           
+                        );
+                      },
+                      itemCount: value.appliedPeopleJob!.length,
+                    );
+              },
+            )),
           ],
         ),
       )),
