@@ -4,7 +4,8 @@ import 'package:job_studio/screen/recruiter%20side/application_screen/applicatio
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
 import 'package:job_studio/screen/recruiter%20side/chat_screen/view/chat.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/home.dart';
-import 'package:job_studio/screen/recruiter%20side/profile%20screen/recuiter_profile.dart';
+import 'package:job_studio/screen/recruiter%20side/profile%20screen/view/recuiter_profile.dart';
+
 import 'package:provider/provider.dart';
 
 class BottomNavRecruiter extends StatelessWidget {

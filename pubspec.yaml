@@ -79,6 +79,7 @@ flutter:
     - assets/images/notification.png
     - assets/images/file-upload.png
     - assets/images/man.png
+    - assets/images/google.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

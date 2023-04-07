@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/screen_login.dart';
 
 class SeekerProfile extends StatelessWidget {
@@ -9,7 +10,10 @@ class SeekerProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        elevation: 0,
+        backgroundColor: kWhiteColor,
+        centerTitle: true,
+        title: const Text("Profile",style: TextStyle(color: kBlackColor),),
         actions: [
           IconButton(onPressed: (){
               showDialog(
@@ -43,7 +47,7 @@ class SeekerProfile extends StatelessWidget {
                 );
 
 
-          }, icon: const Icon(Icons.logout_outlined))
+          }, icon: const Icon(Icons.logout_outlined,color: themeColor,))
         ],
       ),
     );
