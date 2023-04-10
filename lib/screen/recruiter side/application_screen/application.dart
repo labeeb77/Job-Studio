@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
-import 'package:job_studio/screen/recruiter%20side/application_screen/controller/delete_vacancy_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/get_job_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/model/get_vacancy_model.dart';
+import 'package:job_studio/screen/recruiter%20side/application_screen/service/delete_job_service.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/view/add_vacancy.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/view/update_job.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
@@ -34,19 +34,20 @@ class RecruiterApplicScreen extends StatelessWidget {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            const CupertinoSearchTextField(
-              placeholder: 'Search',
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Flexible(
-              child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.55,
-                  child: Consumer2<GetJobProvider, DeleteVacancyProvider>(
-                    builder: (context, value, deleteProvider, child) => value
+        child: Consumer<GetJobProvider>(
+          builder: (context, value1, child) => 
+           Column(
+            children: [
+              const CupertinoSearchTextField(
+                placeholder: 'Search',
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Flexible(
+                child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.55,
+                    child: value1
                                 .isLoading ==
                             true
                         ? Shimmer.fromColors(
@@ -95,18 +96,18 @@ class RecruiterApplicScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              itemCount: value.jobs!.length,
+                              itemCount: value1.jobs!.length,
                             ),
                           )
-                        : value.jobs == null
+                        : value1.jobs == null
                             ? const Center(
                                 child: Text("Error getting jobs"),
                               )
                             : ListView.builder(
                                 itemBuilder: (context, index) {
-                                  final GetJobModel job = value.jobs![index];
+                                  final GetJobModel job = value1.jobs![index];
                                   log(job.position);
-
+        
                                   return Box(
                                       child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -154,7 +155,7 @@ class RecruiterApplicScreen extends StatelessWidget {
                                               Navigator.of(context)
                                                   .push(MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const UpdateJobScreen(),
+                                                     AddVacancyScreen(vacancyId: job.id,index: index,),
                                               ));
                                             } else if (value == 'Delete') {
                                               showDialog(
@@ -175,14 +176,14 @@ class RecruiterApplicScreen extends StatelessWidget {
                                                             const Text("No")),
                                                     TextButton(
                                                         onPressed: ()async {
-                                                          Provider.of<DeleteVacancyProvider>(
-                                                                  context,
-                                                                  listen: false)
-                                                              .deleteVacancy(
-                                                                  job.id);
-                                                                    Navigator.pop(
-                                                              context);
-                                                                await  Provider.of<GetJobProvider>(context).fetchJobs();
+                                                          await DeleteJobService().deleteVacancy(job.id);
+                                                                    if(context.mounted){
+                                                                      Navigator.pop(context);
+                                                                    }
+                                                                    value1.fetchJobs();
+                                                                    
+                                                                    
+                                                                
                                                       
                                                         },
                                                         child:
@@ -196,21 +197,21 @@ class RecruiterApplicScreen extends StatelessWidget {
                                         )),
                                   ));
                                 },
-                                itemCount: value.jobs!.length,
-                              ),
-                  )),
-            ),
-            const SizedBox(
-              height: 35,
-            ),
-            MyButton(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => AddVacancyScreen(),
-                  ));
-                },
-                buttonText: "Add Vacancy")
-          ],
+                                itemCount: value1.jobs!.length,
+                              )),
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+              MyButton(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddVacancyScreen(vacancyId: null ,index: 0,),
+                    ));
+                  },
+                  buttonText: "Add Vacancy")
+            ],
+          ),
         ),
       )),
     );

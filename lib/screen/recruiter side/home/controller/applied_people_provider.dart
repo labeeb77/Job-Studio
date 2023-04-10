@@ -12,15 +12,25 @@ class AppliedPeopleProvider with ChangeNotifier {
 
 
 
-Future<void> fetchAppliedPoeple(String jobId) async{
+Future<void> fetchAppliedPoeple() async{
   isLoading = true;
   notifyListeners();
+  log("enterd to fetchAppliedPoeple Service");
 
   final service = GetAppliedJobService();
-  appliedPeopleJob = await service.fetchAppliedPoeple(jobId);
+  appliedPeopleJob = await service.fetchAppliedPoepleService().then((value) {
+    appliedPeopleJob = value;
+    notifyListeners();
+    isLoading = false;
+  notifyListeners();
+  log(appliedPeopleJob.toString());
+  log(" applied people job : $appliedPeopleJob");
+  });
 
   isLoading = false;
   notifyListeners();
+  
+  
 }
 
 

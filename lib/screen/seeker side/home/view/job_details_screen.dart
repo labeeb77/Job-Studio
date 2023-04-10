@@ -1,10 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
-import 'package:job_studio/screen/recruiter%20side/application_screen/controller/get_job_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/model/get_vacancy_model.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/job_apply_screen.dart';
-import 'package:provider/provider.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final GetJobModel job;
@@ -12,9 +12,8 @@ class JobDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<GetJobProvider>(context, listen: false).fetchJobs();
-    });
+    log(job.id);
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kWhiteColor,
@@ -129,7 +128,9 @@ class JobDetailsScreen extends StatelessWidget {
           MyButton(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const JobApplicationScreen(index: 0,),
+                  builder: (context) =>  JobApplicationScreen(
+                    job: job,
+                  ),
                 ));
               },
               buttonText: "APPLY NOW"),

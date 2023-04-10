@@ -76,7 +76,10 @@ class SeekerHomeScreen extends StatelessWidget {
             ),
             Expanded(
                 child: Consumer<GetJobProvider>(
-              builder: (context, value, child) => value.isLoading == true
+              builder: (context, value, child) => 
+               value.jobs == null
+                      ? const Center(child: CircularProgressIndicator(),)
+              :value.isLoading == true
                   ? Shimmer.fromColors(
                       baseColor: Colors.grey[300]!,
                       highlightColor: Colors.grey[100]!,
@@ -125,8 +128,7 @@ class SeekerHomeScreen extends StatelessWidget {
                         itemCount: value.jobs!.length,
                       ),
                     )
-                  : value.jobs == null
-                      ? const SizedBox()
+                  
                       : ListView.builder(
                           itemBuilder: (context, index) {
                             final GetJobModel job = value.jobs![index];

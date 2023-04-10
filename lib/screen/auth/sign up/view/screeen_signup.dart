@@ -4,7 +4,8 @@ import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/auth/login/view/screen_login.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
-import 'package:job_studio/screen/auth/login/view/widgets/google_sign_button-widget.dart';
+
+import 'package:job_studio/screen/auth/login/view/widgets/google_sign_button_widget.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/text_field_widgte.dart';
 import 'package:job_studio/screen/auth/otp%20screen/view/otp_screen.dart';
 import 'package:job_studio/screen/auth/sign%20up/controller/provider.dart';

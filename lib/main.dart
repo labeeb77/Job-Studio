@@ -7,9 +7,11 @@ import 'package:job_studio/screen/auth/sign%20up/controller/provider.dart';
 import 'package:job_studio/screen/recruiter%20side/Add%20recruiter%20profile/controller/add_recru_profile.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/delete_vacancy_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/get_job_provider.dart';
+import 'package:job_studio/screen/recruiter%20side/application_screen/controller/update_vacancy_controller.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/vacancy_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
 import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
+import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controller/image_provider.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controller/provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/applied_status_provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
@@ -46,7 +48,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => DeleteVacancyProvider(),),
         ChangeNotifierProvider(create: (context) => ApplyJobProvider(),),
         ChangeNotifierProvider(create: (context) => AppliedPeopleProvider(),),
-        ChangeNotifierProvider(create: (context) => AppliedStatusProvider(),)
+        ChangeNotifierProvider(create: (context) => AppliedStatusProvider(),),
+        ChangeNotifierProvider(create: (context) => PickImageProvider(),),
+        ChangeNotifierProvider(create: (context) => UpdateVacancyProvider(),)
       ],
       child: OverlaySupport.global(
         child: MaterialApp(

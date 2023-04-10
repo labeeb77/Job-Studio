@@ -3,9 +3,9 @@ import 'package:job_studio/screen/recruiter%20side/application_screen/model/crea
 import 'package:job_studio/screen/recruiter%20side/application_screen/service/vacancy_service.dart';
 
 class VacancyProvider with ChangeNotifier {
-  final positionNameController = TextEditingController();
-  final salaryController = TextEditingController();
-  final requirementsController = TextEditingController();
+  var positionNameController = TextEditingController();
+  var salaryController = TextEditingController();
+  var requirementsController = TextEditingController();
   String? selectedLocationtype;
   String? selectedJobType;
 
@@ -22,5 +22,10 @@ class VacancyProvider with ChangeNotifier {
       description: requirements,
     );
     CreateVacancyService().createVacancyService(createVacancyModel);
+  }
+  void clearTextField(){
+    positionNameController.clear();
+    salaryController.clear();
+    requirementsController.clear();
   }
 }

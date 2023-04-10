@@ -6,7 +6,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/Intro%20screen/screen_intro.dart';
-import 'package:job_studio/screen/auth/login/view/screen_login.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottom_nav_bar.dart';
 import 'package:job_studio/screen/seeker%20side/bottom%20nav/bottom_nav_bar.dart';
 
@@ -20,7 +19,12 @@ class ScreenSplash extends StatelessWidget {
       FlutterSecureStorage storage = const FlutterSecureStorage();
       String? accessToken = await storage.read(key: 'access_token');
       String? selectRole = await storage.read(key: 'role');
-      log(selectRole!);
+
+      if(selectRole !=null){
+         log(selectRole);
+
+      }
+     
 
       if (accessToken == null) {
         if (context.mounted) {
@@ -86,7 +90,7 @@ class ScreenSplash extends StatelessWidget {
   Future<void> startingscreen(context) async {
     await Future.delayed(const Duration(seconds: 1));
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => ScreenLogin(),
+      builder: (context) => const IntroScreen(),
     ));
   }
 }

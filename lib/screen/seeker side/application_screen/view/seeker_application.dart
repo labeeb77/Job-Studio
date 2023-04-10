@@ -34,7 +34,11 @@ class SeekerApplicationScreen extends StatelessWidget {
             Expanded(
               child:   Consumer<AppliedStatusProvider>(
                 builder: (context, value, child) => 
-                 ListView.builder(
+                value.appliedJobStatus == null
+                ? const Center(child: CircularProgressIndicator(),)
+                : value.isLoading
+                ? const Center(child: CircularProgressIndicator(),)
+                : ListView.builder(
                 itemBuilder: (context, index) {
                      AppliedJobStatusModel appliedJob = value.appliedJobStatus![index];
                   return Box(
@@ -62,7 +66,7 @@ class SeekerApplicationScreen extends StatelessWidget {
                             ),
                           ),
                           onTap: (){
-                           Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const SeeAppliedJobs() ,));},
+                           Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeeAppliedJobs(jobStatus: appliedJob) ,));},
                         
                         ),
                         const Divider(color: themeColor,),
@@ -74,7 +78,7 @@ class SeekerApplicationScreen extends StatelessWidget {
                         
                             borderRadius: BorderRadius.circular(20)
                           ),
-                          child: Center(child: Text(appliedJob.status,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),)),
+                          child: Center(child: Text(appliedJob.status,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w500),)),
                         )
                       ],
                     ),

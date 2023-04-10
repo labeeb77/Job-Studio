@@ -24,6 +24,7 @@ class AppliedStatusService {
       final List<AppliedJobStatusModel> appliedStatus = 
       (response.data as List).map((e) => AppliedJobStatusModel.fromJson(e)).toList();
       log(appliedStatus.toString());
+      
       return appliedStatus;
        }
     }

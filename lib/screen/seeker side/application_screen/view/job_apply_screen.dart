@@ -12,9 +12,8 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:provider/provider.dart';
 
 class JobApplicationScreen extends StatelessWidget {
-  final int index;
-  const JobApplicationScreen({super.key, required this.index});
-
+  const JobApplicationScreen({super.key, required this.job});
+  final GetJobModel job;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +31,7 @@ class JobApplicationScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Consumer2<LocalProvider, GetJobProvider>(
           builder: (context, value1, value2, child) {
-            final GetJobModel job = value2.jobs![index];
+            // final GetJobModel job = value2.jobs![index];
             return Column(children: [
               const SizedBox(
                 height: 30,
@@ -96,17 +95,7 @@ class JobApplicationScreen extends StatelessWidget {
                     if (value1.pdfFile != null) {
                       Provider.of<ApplyJobProvider>(context, listen: false)
                           .applyForJob(context, job.id);
-                      Provider.of<ApplyJobProvider>(context, listen: false)
-                              .isLoading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                              builder: (context) => const BottomNavSeeker(),
-                            ));
-                      showSimpleNotification(
-                          const Text("Job applied successfully.."));
+                    
                     } else {
                       toast("please upload your resume");
                     }

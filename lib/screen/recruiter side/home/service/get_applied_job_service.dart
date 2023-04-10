@@ -8,25 +8,27 @@ import 'package:job_studio/screen/recruiter%20side/home/model/appleid_job_model.
 class GetAppliedJobService {
   Dio dio = Dio();
 
-  Future<List<GetAppliedPeopleModel>?> fetchAppliedPoeple(String jobId) async {
+  Future<List<GetAppliedPeopleModel>?> fetchAppliedPoepleService() async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     String? token = await storage.read(key: "access_token");
 
     String? accessToken = token!.replaceAll('"', '');
     String? path =
-        "${ApiConfig.apiBaseUrl}${ApiConfig.jobVacancy}$jobId/applications";
+        "${ApiConfig.apiBaseUrl}${ApiConfig.jobVacancy}642fac58689b3e56143a64d7/applications";
 
     try {
       Response response = await dio.get(path,
           options: Options(headers: {"authorization": "Bearer $accessToken"}));
       if (response.statusCode == 200) {
+        
         log(response.data.toString());
 
         final List<GetAppliedPeopleModel> appliedPeople =
             (response.data as List)
                 .map((e) => GetAppliedPeopleModel.fromJson(e))
                 .toList();
-        log(appliedPeople.toString());
+                log("list maped");
+        
         return appliedPeople;
       }
     } on DioError catch (e) {

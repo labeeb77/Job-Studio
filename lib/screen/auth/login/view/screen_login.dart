@@ -4,7 +4,7 @@ import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/auth/login/controller/login_provider.dart';
 
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
-import 'package:job_studio/screen/auth/login/view/widgets/google_sign_button-widget.dart';
+import 'package:job_studio/screen/auth/login/view/widgets/google_sign_button_widget.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/text_field_widgte.dart';
 import 'package:job_studio/screen/auth/sign%20up/view/screeen_signup.dart';
 import 'package:overlay_support/overlay_support.dart';

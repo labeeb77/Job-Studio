@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:job_studio/screen/seeker%20side/application_screen/view/job_apply_screen.dart';
 
 import '../../../seeker side/application_screen/service/firebase.dart';
 
@@ -35,16 +34,12 @@ class LocalProvider with ChangeNotifier{
           .uploadToFirebase(pdfFile!.path, pdfPath.toString(), "test")
           .then((value) => log("file stored in firebase"));
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const JobApplicationScreen(index: 0,)));
-    } else {
-      return null;
-    }
+     
   }
 
 
 
 
-
+  }
   
 }
