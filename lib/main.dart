@@ -16,6 +16,8 @@ import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controlle
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/applied_status_provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/apply_job_provider.dart';
+import 'package:job_studio/screen/seeker%20side/explore/controller/post_controller.dart';
+import 'package:job_studio/screen/seeker%20side/explore/view/explore_screen.dart';
 
 import 'package:job_studio/screen/splash%20screen/screen_splash.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -47,10 +49,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => GetJobProvider(),),
         ChangeNotifierProvider(create: (context) => DeleteVacancyProvider(),),
         ChangeNotifierProvider(create: (context) => ApplyJobProvider(),),
-        ChangeNotifierProvider(create: (context) => AppliedPeopleProvider(),),
+        ChangeNotifierProvider(create: (context) => GetAppliedJobProvider(),),
         ChangeNotifierProvider(create: (context) => AppliedStatusProvider(),),
         ChangeNotifierProvider(create: (context) => PickImageProvider(),),
-        ChangeNotifierProvider(create: (context) => UpdateVacancyProvider(),)
+        ChangeNotifierProvider(create: (context) => UpdateVacancyProvider(),),
+        ChangeNotifierProvider(create: (context) => PostImageController(),),
       ],
       child: OverlaySupport.global(
         child: MaterialApp(

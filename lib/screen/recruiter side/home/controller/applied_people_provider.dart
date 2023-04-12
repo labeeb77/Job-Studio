@@ -1,37 +1,33 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
-import 'package:job_studio/screen/recruiter%20side/home/model/appleid_job_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:job_studio/screen/recruiter%20side/home/service/get_applied_job_service.dart';
 
-class AppliedPeopleProvider with ChangeNotifier {
-  
+import '../model/appleid_job_model.dart';
 
-  List<GetAppliedPeopleModel>? appliedPeopleJob ;
+class GetAppliedJobProvider extends ChangeNotifier {
+  List<GetAppliedPeopleModel>? appliedPeople;
   bool isLoading = false;
+  String errorMessage = '';
 
-
-
-Future<void> fetchAppliedPoeple() async{
-  isLoading = true;
-  notifyListeners();
-  log("enterd to fetchAppliedPoeple Service");
-
-  final service = GetAppliedJobService();
-  appliedPeopleJob = await service.fetchAppliedPoepleService().then((value) {
-    appliedPeopleJob = value;
-    notifyListeners();
-    isLoading = false;
-  notifyListeners();
-  log(appliedPeopleJob.toString());
-  log(" applied people job : $appliedPeopleJob");
-  });
-
-  isLoading = false;
-  notifyListeners();
   
-  
-}
 
+  Future<void> fetchAppliedPeople(String jobId) async {
+    try {
+      isLoading = true;
+      notifyListeners();
+      
+      final List<GetAppliedPeopleModel>? appliedPeople =
+          await GetAppliedJobService().fetchAppliedPoepleService(jobId);
+          
+      this.appliedPeople = appliedPeople;
+      errorMessage = '';
 
+      isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      errorMessage = 'Failed to fetch applied people: $e';
+      
+      isLoading = false;
+      notifyListeners();
+    }
+  }
 }

@@ -3,14 +3,16 @@ import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/seeker_application.dart';
 import 'package:job_studio/screen/seeker%20side/chat_screen/view/seeker_chat.dart';
+import 'package:job_studio/screen/seeker%20side/explore/view/explore_screen.dart';
 import 'package:job_studio/screen/seeker%20side/home/view/seeker_home.dart';
 import 'package:job_studio/screen/seeker%20side/profile_screen/view/seeker_profile.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavSeeker extends StatelessWidget {
-   const BottomNavSeeker({super.key});
+  const BottomNavSeeker({super.key});
 
   final screens = const [
+    ExploreScreen(),
     SeekerHomeScreen(),
     SeekerApplicationScreen(),
     SeekerChatScreen(),
@@ -36,6 +38,7 @@ class BottomNavSeeker extends StatelessWidget {
                 selectedIndex: value.index,
                 onDestinationSelected: (index) => value.changingIndex(index),
                 destinations: const [
+                   NavigationDestination(icon: Icon(Icons.tour), label: 'Tour'),
                   NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
                   NavigationDestination(
                       icon: Icon(Icons.list_alt_sharp), label: 'Application'),

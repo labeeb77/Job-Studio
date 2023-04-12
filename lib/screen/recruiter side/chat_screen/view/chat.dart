@@ -9,6 +9,8 @@ class RecruiterChatScreen extends StatelessWidget {
       appBar: AppBar(
         title:const Text("Chat Box"),
       ),
+      body: SafeArea(
+        child: Column()),
     );
   }
 }

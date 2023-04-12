@@ -19,7 +19,7 @@ class BackButtonAndText extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-            onTap: onTap,
+            
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

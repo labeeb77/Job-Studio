@@ -2,9 +2,13 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:job_studio/core/colors.dart';
+import 'package:job_studio/screen/recruiter%20side/application_screen/service/get_vacancy_service.dart';
 import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/home/model/appleid_job_model.dart';
+import 'package:job_studio/screen/recruiter%20side/home/service/get_applied_job_service.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
+import 'package:job_studio/screen/recruiter%20side/home/view/widgets/see_details.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/slider_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -17,9 +21,10 @@ class RecruiterHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<GetJobProvider>(context, listen: false).fetchJobs();
-    
-      Provider.of<AppliedPeopleProvider>(context, listen: false)
-          .fetchAppliedPoeple();
+      final createdProvider =
+          Provider.of<GetJobProvider>(context, listen: false);
+      Provider.of<GetAppliedJobProvider>(context, listen: false)
+          .fetchAppliedPeople(createdProvider.jobs![0].id);
     });
     return Scaffold(
       body: SafeArea(
@@ -28,9 +33,7 @@ class RecruiterHomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CupertinoSearchTextField(
-              placeholder: 'Search',
-            ),
+           
             const SizedBox(
               height: 20,
             ),
@@ -55,89 +58,88 @@ class RecruiterHomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 10,top: 10),
                   child: Text(
                     "Recent people applied",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ),
-                Box(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 17, vertical: 6),
-                    child: Text('See all'),
-                  ),
-                )
+              
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            Expanded(
-                child: Consumer<AppliedPeopleProvider>(
+            Expanded(child: Consumer<GetAppliedJobProvider>(
               builder: (context, value, child) {
-                
-                return 
-                   value.isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  :
-                  ListView.builder(
-                      itemBuilder: (context, index) {
-                        final GetAppliedPeopleModel appliedPerson =
-                            value.appliedPeopleJob![index];
-                            log(appliedPerson.profile[index].user);
-                        return Box(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  title: Text(appliedPerson.appliedBy.username),
-                                  subtitle:  Text(appliedPerson.profile[index].address),
-                                  leading: CircleAvatar(
-                                    radius: 30,
-                                    child: 
-                                     Image.asset("assets/images/man.png")
-                                  
-                                  )
-                                ),
-                                Row(
-                                  children: const [
-                                    SizedBox(
-                                      width: 50,
-                                    ),
-                                    Box(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 7, horizontal: 15),
-                                        child: Text(
-                                          "See detailes",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                return value.isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : value.appliedPeople == null
+                        ? const Center(
+                            child: Text("No People found"),
+                          )
+                        : value.appliedPeople!.isEmpty
+                            ? const Center(
+                                child: Text('No Appplied people found'))
+                            : ListView.builder(
+                                itemBuilder: (context, index) {
+                                  final GetAppliedPeopleModel appliedPerson =
+                                      value.appliedPeople![index];
+                                  log(appliedPerson.appliedBy.username);
+                                  return Box(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          ListTile(
+                                              title: Text(appliedPerson
+                                                  .appliedBy.username),
+                                              subtitle: Text(appliedPerson
+                                                  .appliedBy.email),
+                                              leading: CircleAvatar(
+                                                  radius: 30,
+                                                  backgroundImage: NetworkImage(
+                                                      appliedPerson.profile[0]
+                                                          .profileImage))),
+                                          const SizedBox(
+                                            width: 50,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context)
+                                                  .push(MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SeeDetails(
+                                                        appliedPerson:
+                                                            appliedPerson),
+                                              ));
+                                            },
+                                            splashColor: themeColor,
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: themeColor),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              child: const Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    vertical: 6,
+                                                    horizontal: 50),
+                                                child: Text("See Details"),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Box(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 7, horizontal: 15),
-                                        child: Text(
-                                          "See Resume",
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      itemCount: value.appliedPeopleJob!.length,
-                    );
+                                  );
+                                },
+                                itemCount: value.appliedPeople!.length,
+                              );
               },
             )),
           ],

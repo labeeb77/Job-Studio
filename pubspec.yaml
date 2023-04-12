@@ -43,9 +43,11 @@ dependencies:
   google_fonts: ^4.0.3
   image_picker: ^0.8.7
   intl: ^0.18.0
+  like_button: ^2.0.5
   lottie: ^2.3.0
   overlay_support: ^2.1.0
   provider: ^6.0.5
+  readmore: ^2.2.0
   shared_preferences: ^2.0.18
   shimmer: ^2.0.0
   syncfusion_flutter_pdfviewer: ^21.1.37
@@ -80,6 +82,7 @@ flutter:
     - assets/images/file-upload.png
     - assets/images/man.png
     - assets/images/google.png
+    - assets/images/defaultImage.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

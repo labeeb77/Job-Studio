@@ -46,7 +46,7 @@ class AddVacancyScreen extends StatelessWidget {
         elevation: 0,
         title:  Text(
           vacancyId != null ? "Update Vacancy" : "Create Vcancy",
-          style: TextStyle(color: kBlackColor),
+          style: const TextStyle(color: kBlackColor),
         ),
       ),
       body: SafeArea(

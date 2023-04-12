@@ -15,7 +15,7 @@ class GetAppliedPeopleModel {
     String resume;
     String status;
     int v;
-    List<dynamic> profile;
+    List<Profile> profile;
 
     factory GetAppliedPeopleModel.fromJson(Map<String, dynamic> json) => GetAppliedPeopleModel(
         id: json["_id"],
@@ -24,7 +24,7 @@ class GetAppliedPeopleModel {
         resume: json["resume"],
         status: json["status"],
         v: json["__v"],
-        profile: List<dynamic>.from(json["profile"].map((x) => x)),
+        profile: List<Profile>.from(json["profile"].map((x) => Profile.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -34,7 +34,7 @@ class GetAppliedPeopleModel {
         "resume": resume,
         "status": status,
         "__v": v,
-        "profile": List<dynamic>.from(profile.map((x) => x)),
+        "profile": List<dynamic>.from(profile.map((x) => x.toJson())),
     };
 }
 
@@ -70,6 +70,42 @@ class AppliedBy {
         "email": email,
         "verified": verified,
         "role": role,
+        "__v": v,
+    };
+}
+
+class Profile {
+    Profile({
+        required this.id,
+        required this.dateOfBirth,
+        required this.user,
+        required this.address,
+        required this.profileImage,
+        required this.v,
+    });
+
+    String id;
+    String dateOfBirth;
+    String user;
+    String address;
+    String profileImage;
+    int v;
+
+    factory Profile.fromJson(Map<String, dynamic> json) => Profile(
+        id: json["_id"],
+        dateOfBirth: json["date_of_birth"],
+        user: json["user"],
+        address: json["address"],
+        profileImage: json["profile_image"],
+        v: json["__v"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "date_of_birth": dateOfBirth,
+        "user": user,
+        "address": address,
+        "profile_image": profileImage,
         "__v": v,
     };
 }

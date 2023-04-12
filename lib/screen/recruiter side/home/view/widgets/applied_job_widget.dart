@@ -11,10 +11,10 @@ class AppliedJobWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Consumer<AppliedPeopleProvider>(
+    return Consumer<GetAppliedJobProvider>(
               builder: (context, value, child) {
                 
-                return value.appliedPeopleJob!.isEmpty
+                return value.appliedPeople!.isEmpty
                   ? const Center(child: Text("No applied people"),)
                   : value.isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -23,7 +23,7 @@ class AppliedJobWidget extends StatelessWidget {
                     shrinkWrap: true,
                       itemBuilder: (context, index) {
                         final GetAppliedPeopleModel? appliedPerson =
-                            value.appliedPeopleJob?.elementAt(index);
+                            value.appliedPeople?.elementAt(index);
                             if(appliedPerson == null){
                               const SizedBox.shrink();
                             }
@@ -82,7 +82,7 @@ class AppliedJobWidget extends StatelessWidget {
                           ),
                         );
                       },
-                      itemCount: value.appliedPeopleJob?.length ?? 0,
+                      itemCount: value.appliedPeople?.length ?? 0,
                     );
               },
             );

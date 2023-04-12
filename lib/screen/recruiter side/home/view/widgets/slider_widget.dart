@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/controller/get_job_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/model/get_vacancy_model.dart';
+import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -12,9 +15,16 @@ class SliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+       Provider.of<GetJobProvider>(context,listen: false).fetchJobs();
+        final createdProvider =
+          Provider.of<GetJobProvider>(context, listen: false);
+      Provider.of<GetAppliedJobProvider>(context,listen: false).fetchAppliedPeople(createdProvider.jobs![0].id);
+
+    });
     return  
-      Consumer<GetJobProvider>(
-        builder: (context, value, child) {
+      Consumer2<GetJobProvider,GetAppliedJobProvider>(
+        builder: (context, value,value2, child) {
           return
           value.isLoading == true
           ? CarouselSlider.builder(
@@ -36,10 +46,16 @@ class SliderWidget extends StatelessWidget {
             options: CarouselOptions(
               autoPlay: true,
               enlargeCenterPage: true,
-              viewportFraction: 0.9,
+              viewportFraction: 1.1,
               aspectRatio: 2.0,
               initialPage: 2,
+              onPageChanged: (index,reason) {
+             
+
+
+              },
             ),
+          
           )
           : value.jobs == null
           ? const Text("erro getting jobs")
@@ -101,9 +117,18 @@ class SliderWidget extends StatelessWidget {
           },itemCount: value.jobs!.length,
            options: CarouselOptions(  autoPlay: false,
             enlargeCenterPage: true,
-              viewportFraction: 0.9,
+              viewportFraction: 0.95,
             aspectRatio: 2.0,
-            initialPage: 2,),);
+            initialPage: 2,
+            onPageChanged: (index, reason) {
+                 value.indexId = index;
+                value2.fetchAppliedPeople(value.jobs![value.indexId!].id);
+                log(index.toString());
+                log("indexid is");
+                log(value.indexId.toString());
+                
+                
+            },),);
         },
       );
   }
