@@ -5,7 +5,7 @@ import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/model/applyjob_model.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/apply_job_service.dart';
-import 'package:job_studio/screen/seeker%20side/bottom%20nav/bottom_nav_bar.dart';
+
 import 'package:provider/provider.dart';
 
 class ApplyJobProvider with ChangeNotifier {
@@ -24,15 +24,7 @@ bool isLoading = false;
       log(" file url is${firbaseProvider.fileUrl}");
 
       ApplyJobService().applyForJobService(applyJobModel, jobId);
-        Provider.of<ApplyJobProvider>(context, listen: false)
-                              .isLoading
-                          ? const Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Navigator.of(context)
-                              .pushReplacement(MaterialPageRoute(
-                              builder: (context) => const BottomNavSeeker(),
-                            ));
+      
     }
     else{
       log("fileUrl is null");

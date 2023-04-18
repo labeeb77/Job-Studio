@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/auth/login/view/widgets/button_widget.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
@@ -23,10 +23,9 @@ class PostScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          child: Consumer2<PickImageProvider,PostImageController>(
-            builder: (context, value,value2, child) => 
-            Column(
-                  children: [
+          child: Consumer2<PickImageProvider, PostImageController>(
+        builder: (context, value, value2, child) => Column(
+          children: [
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
               child: Box(
@@ -46,8 +45,8 @@ class PostScreen extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Provider.of<PickImageProvider>(context,listen: false).pickImage();
-          
+                Provider.of<PickImageProvider>(context, listen: false)
+                    .pickImage();
               },
               splashColor: themeColor,
               child: Container(
@@ -60,22 +59,36 @@ class PostScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 20,),
-            Padding(
-              padding: const EdgeInsets.only(left: 10,right: 10),
-              child: Box(child:
-              value.galleryImage == null
-              ? Image.asset ("assets/images/defaultImage.png",fit: BoxFit.cover,)
-              : Image.file(value.galleryImage!,fit: BoxFit.cover,)),
+            const SizedBox(
+              height: 20,
             ),
-            const SizedBox(height: 60,),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Box(
+                  child: value.galleryImage == null
+                      ? Image.asset(
+                          "assets/images/defaultImage.png",
+                          fit: BoxFit.cover,
+                        )
+                      : Image.file(
+                          value.galleryImage!,
+                          fit: BoxFit.cover,
+                          height: 220,
+                        )),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
             MyButton(
-              onTap: ()async{
-               await Provider.of<PostImageController>(context,listen: false).postImage(context).then((value) => Navigator.of(context).pop());
-              }, buttonText: "POST")
-                  ],
-                ),
-          )),
+                onTap: () async {
+                  await Provider.of<PostImageController>(context, listen: false)
+                      .postImage(context)
+                      .then((value) => Navigator.of(context).pop());
+                },
+                buttonText: "POST")
+          ],
+        ),
+      )),
     );
   }
 }

@@ -74,7 +74,13 @@ class SeekerApplicationScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.65,
                           height: MediaQuery.of(context).size.width * 0.10,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 241, 241, 124),
+                            color: appliedJob.status == 'Pending'
+                            ? Colors.yellow[300]
+                            : appliedJob.status == 'Selected'
+                            ? Colors.green[400]
+                            : appliedJob.status == 'Scheduled for Interview'
+                            ? Colors.blue[400]
+                            : Colors.red[400],
                         
                             borderRadius: BorderRadius.circular(20)
                           ),

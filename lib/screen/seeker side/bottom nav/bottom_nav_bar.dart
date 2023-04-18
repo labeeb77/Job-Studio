@@ -38,7 +38,7 @@ class BottomNavSeeker extends StatelessWidget {
                 selectedIndex: value.index,
                 onDestinationSelected: (index) => value.changingIndex(index),
                 destinations: const [
-                   NavigationDestination(icon: Icon(Icons.tour), label: 'Tour'),
+                   NavigationDestination(icon: Icon(Icons.tour), label: 'Explore'),
                   NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
                   NavigationDestination(
                       icon: Icon(Icons.list_alt_sharp), label: 'Application'),

@@ -1,12 +1,9 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
-import 'package:job_studio/screen/recruiter%20side/application_screen/service/get_vacancy_service.dart';
 import 'package:job_studio/screen/recruiter%20side/home/controller/applied_people_provider.dart';
 import 'package:job_studio/screen/recruiter%20side/home/model/appleid_job_model.dart';
-import 'package:job_studio/screen/recruiter%20side/home/service/get_applied_job_service.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/see_details.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/slider_widget.dart';
@@ -21,10 +18,10 @@ class RecruiterHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<GetJobProvider>(context, listen: false).fetchJobs();
-      final createdProvider =
-          Provider.of<GetJobProvider>(context, listen: false);
-      Provider.of<GetAppliedJobProvider>(context, listen: false)
-          .fetchAppliedPeople(createdProvider.jobs![0].id);
+      // final createdProvider =
+      //     Provider.of<GetJobProvider>(context, listen: false);
+      // Provider.of<GetAppliedJobProvider>(context, listen: false)
+      //     .fetchAppliedPeople(createdProvider.jobs![0].id);
     });
     return Scaffold(
       body: SafeArea(
@@ -33,7 +30,6 @@ class RecruiterHomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           
             const SizedBox(
               height: 20,
             ),
@@ -58,13 +54,12 @@ class RecruiterHomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
                 Padding(
-                  padding: EdgeInsets.only(left: 10,top: 10),
+                  padding: EdgeInsets.only(left: 10, top: 10),
                   child: Text(
                     "Recent people applied",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                   ),
                 ),
-              
               ],
             ),
             const SizedBox(

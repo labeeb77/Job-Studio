@@ -8,7 +8,6 @@ import 'package:job_studio/screen/recruiter%20side/application_screen/controller
 import 'package:job_studio/screen/recruiter%20side/application_screen/model/get_vacancy_model.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/service/delete_job_service.dart';
 import 'package:job_studio/screen/recruiter%20side/application_screen/view/add_vacancy.dart';
-import 'package:job_studio/screen/recruiter%20side/application_screen/view/update_job.dart';
 import 'package:job_studio/screen/recruiter%20side/home/view/widgets/custom_card.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -35,8 +34,7 @@ class RecruiterApplicScreen extends StatelessWidget {
           child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<GetJobProvider>(
-          builder: (context, value1, child) => 
-           Column(
+          builder: (context, value1, child) => Column(
             children: [
               const CupertinoSearchTextField(
                 placeholder: 'Search',
@@ -47,9 +45,7 @@ class RecruiterApplicScreen extends StatelessWidget {
               Flexible(
                 child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.55,
-                    child: value1
-                                .isLoading ==
-                            true
+                    child: value1.isLoading == true
                         ? Shimmer.fromColors(
                             baseColor: Colors.grey[300]!,
                             highlightColor: Colors.grey[100]!,
@@ -107,7 +103,7 @@ class RecruiterApplicScreen extends StatelessWidget {
                                 itemBuilder: (context, index) {
                                   final GetJobModel job = value1.jobs![index];
                                   log(job.position);
-        
+
                                   return Box(
                                       child: Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -155,7 +151,10 @@ class RecruiterApplicScreen extends StatelessWidget {
                                               Navigator.of(context)
                                                   .push(MaterialPageRoute(
                                                 builder: (context) =>
-                                                     AddVacancyScreen(vacancyId: job.id,index: index,),
+                                                    AddVacancyScreen(
+                                                  vacancyId: job.id,
+                                                  index: index,
+                                                ),
                                               ));
                                             } else if (value == 'Delete') {
                                               showDialog(
@@ -175,16 +174,15 @@ class RecruiterApplicScreen extends StatelessWidget {
                                                         child:
                                                             const Text("No")),
                                                     TextButton(
-                                                        onPressed: ()async {
-                                                          await DeleteJobService().deleteVacancy(job.id);
-                                                                    if(context.mounted){
-                                                                      Navigator.pop(context);
-                                                                    }
-                                                                    value1.fetchJobs();
-                                                                    
-                                                                    
-                                                                
-                                                      
+                                                        onPressed: () async {
+                                                          await DeleteJobService()
+                                                              .deleteVacancy(
+                                                                  job.id);
+                                                          if (context.mounted) {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }
+                                                          value1.fetchJobs();
                                                         },
                                                         child:
                                                             const Text("Yes"))
@@ -206,7 +204,10 @@ class RecruiterApplicScreen extends StatelessWidget {
               MyButton(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AddVacancyScreen(vacancyId: null ,index: 0,),
+                      builder: (context) => AddVacancyScreen(
+                        vacancyId: null,
+                        index: 0,
+                      ),
                     ));
                   },
                   buttonText: "Add Vacancy")

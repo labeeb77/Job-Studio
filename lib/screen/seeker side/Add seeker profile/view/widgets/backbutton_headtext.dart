@@ -19,7 +19,7 @@ class BackButtonAndText extends StatelessWidget {
       child: Row(
         children: [
           GestureDetector(
-            
+            onTap: onTap,
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -28,7 +28,7 @@ class BackButtonAndText extends StatelessWidget {
                 padding: EdgeInsets.all(4.0),
                 child: Icon(
                   Icons.chevron_left_rounded,
-                  size: 40,
+                  size: 35,
                   color: themeColor,
                 ),
               ),

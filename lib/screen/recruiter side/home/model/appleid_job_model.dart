@@ -85,7 +85,7 @@ class Profile {
     });
 
     String id;
-    String dateOfBirth;
+    DateTime  dateOfBirth;
     String user;
     String address;
     String profileImage;
@@ -93,7 +93,7 @@ class Profile {
 
     factory Profile.fromJson(Map<String, dynamic> json) => Profile(
         id: json["_id"],
-        dateOfBirth: json["date_of_birth"],
+        dateOfBirth: DateTime.parse(json["date_of_birth"]),
         user: json["user"],
         address: json["address"],
         profileImage: json["profile_image"],
@@ -102,7 +102,7 @@ class Profile {
 
     Map<String, dynamic> toJson() => {
         "_id": id,
-        "date_of_birth": dateOfBirth,
+        "date_of_birth": dateOfBirth.toIso8601String(),
         "user": user,
         "address": address,
         "profile_image": profileImage,

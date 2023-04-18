@@ -35,6 +35,7 @@ class LocalProvider with ChangeNotifier{
           .then((value) => log("file stored in firebase"));
       // ignore: use_build_context_synchronously
      
+     
   }
 
 

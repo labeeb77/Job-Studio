@@ -13,4 +13,5 @@ class ApiConfig {
   static String appliedStatus = "/api/v1/jobs/applied";
   static String status = "/api/v1/jobs/applications/";
   static String post = "/api/v1/posts";
+  static String postOption = "/api/v1/posts/";
 }

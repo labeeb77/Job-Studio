@@ -29,8 +29,8 @@ class JobApplicationScreen extends StatelessWidget {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer2<LocalProvider, GetJobProvider>(
-          builder: (context, value1, value2, child) {
+        child: Consumer3<LocalProvider, GetJobProvider,ApplyJobProvider>(
+          builder: (context, value1, value2,value3, child) {
             // final GetJobModel job = value2.jobs![index];
             return Column(children: [
               const SizedBox(
@@ -70,7 +70,9 @@ class JobApplicationScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   value1.pickFile(context);
+                 
                 },
+                
                 child: const Box(
                   child: SizedBox(
                     height: 180,
@@ -95,6 +97,9 @@ class JobApplicationScreen extends StatelessWidget {
                     if (value1.pdfFile != null) {
                       Provider.of<ApplyJobProvider>(context, listen: false)
                           .applyForJob(context, job.id);
+                          value3.isLoading
+                          ? const Center(child: CircularProgressIndicator(),)
+                          : Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BottomNavSeeker(),));
                     
                     } else {
                       toast("please upload your resume");

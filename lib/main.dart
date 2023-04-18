@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:job_studio/screen/auth/login/controller/local_provider.dart';
 import 'package:job_studio/screen/auth/login/controller/login_provider.dart';
 import 'package:job_studio/screen/auth/otp%20screen/controller/otp_provider.dart';
@@ -16,8 +17,11 @@ import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/controlle
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/applied_status_provider.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/service/firebase.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/controller/apply_job_provider.dart';
+import 'package:job_studio/screen/seeker%20side/explore/controller/get_uploaded_provider.dart';
 import 'package:job_studio/screen/seeker%20side/explore/controller/post_controller.dart';
-import 'package:job_studio/screen/seeker%20side/explore/view/explore_screen.dart';
+
+import 'package:job_studio/screen/seeker%20side/home/controller/search_query_provider.dart';
+import 'package:job_studio/screen/seeker%20side/profile_screen/controller/get_user_profile_provider.dart';
 
 import 'package:job_studio/screen/splash%20screen/screen_splash.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -54,6 +58,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => PickImageProvider(),),
         ChangeNotifierProvider(create: (context) => UpdateVacancyProvider(),),
         ChangeNotifierProvider(create: (context) => PostImageController(),),
+        ChangeNotifierProvider(create: (context) => GetUploadedServiceProvider(),),
+        ChangeNotifierProvider(create: (context) => JobSearchProvider(),),
+        ChangeNotifierProvider(create: (context) => UserProfileProvider(),)
       ],
       child: OverlaySupport.global(
         child: MaterialApp(
@@ -61,9 +68,13 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
            
             primarySwatch: Colors.purple,
+            textTheme: GoogleFonts.nunitoTextTheme(
+              Theme.of(context).textTheme
+            )
             
           ),
-          home:   const ScreenSplash(),
+          home:  const ScreenSplash(),
+          debugShowCheckedModeBanner: false,
         ),
       ),
     );
