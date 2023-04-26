@@ -13,6 +13,7 @@ class PostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       resizeToAvoidBottomInset : false,
       appBar: AppBar(
         backgroundColor: kWhiteColor,
         centerTitle: true,

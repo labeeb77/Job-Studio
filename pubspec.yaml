@@ -42,6 +42,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_svg: ^2.0.4
   google_fonts: ^4.0.3
+  grouped_list: ^5.1.2
   image_picker: ^0.8.7
   intl: ^0.18.0
   like_button: ^2.0.5
@@ -52,6 +53,7 @@ dependencies:
   settings_ui: ^2.0.2
   shared_preferences: ^2.0.18
   shimmer: ^2.0.0
+  socket_io_client: ^2.0.1
   syncfusion_flutter_pdfviewer: ^21.1.37
 
 dev_dependencies:

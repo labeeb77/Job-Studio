@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:job_studio/screen/auth/login/view/screen_login.dart';
+import 'package:job_studio/screen/recruiter%20side/privacy_policy/privacy_policy_screen.dart';
+import 'package:job_studio/screen/recruiter%20side/terms&_conditions/terms_and_condition_screen.dart';
 import 'package:job_studio/screen/seeker%20side/Add%20seeker%20profile/view/widgets/backbutton_headtext.dart';
 import 'package:settings_ui/settings_ui.dart';
 
@@ -34,12 +36,16 @@ class SettingsRecruiter extends StatelessWidget {
                     SettingsTile.navigation(
                       leading: const Icon(Icons.privacy_tip_outlined),
                       title: const Text('Privacy policy'),
-                      onPressed: (context) {},
+                      onPressed: (context) {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PrivacyPolicy(),));
+                      },
                     ),
                     SettingsTile.navigation(
                       leading: const Icon(Icons.feedback_outlined),
                       title: const Text('Terms and conditions'),
-                      onPressed: (context) {},
+                      onPressed: (context) {
+                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => const TermsAndConditions(),));
+                      },
                     ),
                     SettingsTile.navigation(
                       leading: const Icon(Icons.share),

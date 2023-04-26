@@ -14,4 +14,7 @@ class ApiConfig {
   static String status = "/api/v1/jobs/applications/";
   static String post = "/api/v1/posts";
   static String postOption = "/api/v1/posts/";
+  static String postChat = "/api/v1/chats/messages";
+  static String getChat = "/api/v1/chats";
+  static String getMessage = "/api/v1/chats/";
 }

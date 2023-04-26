@@ -28,7 +28,7 @@ class SeekerProfileService {
         log(response.data.toString());
         if(context.mounted){
           Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const BottomNavSeeker()));
+            .push(MaterialPageRoute(builder: (context) =>  BottomNavSeeker()));
         }
       }
     } on DioError catch (e) {

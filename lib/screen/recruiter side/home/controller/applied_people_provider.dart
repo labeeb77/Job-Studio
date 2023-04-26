@@ -10,7 +10,7 @@ class GetAppliedJobProvider extends ChangeNotifier {
 
   
 
-  Future<void> fetchAppliedPeople(String jobId) async {
+  Future<void> fetchAppliedPeople(String jobId, [id]) async {
     try {
       isLoading = true;
       notifyListeners();

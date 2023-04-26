@@ -8,7 +8,8 @@ class GetUploadedServiceProvider with ChangeNotifier {
   List<GetUploadedModel>? uploadedData ;
 
   //------ for like ------//
-  
+  int likedCount = 0;
+  bool isLiked = false;
 
   // ---- for comment text controller------ // 
    final TextEditingController commentText = TextEditingController();

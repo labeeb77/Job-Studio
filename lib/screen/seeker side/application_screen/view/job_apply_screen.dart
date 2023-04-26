@@ -99,7 +99,7 @@ class JobApplicationScreen extends StatelessWidget {
                           .applyForJob(context, job.id);
                           value3.isLoading
                           ? const Center(child: CircularProgressIndicator(),)
-                          : Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const BottomNavSeeker(),));
+                          : Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>  BottomNavSeeker(),));
                     
                     } else {
                       toast("please upload your resume");

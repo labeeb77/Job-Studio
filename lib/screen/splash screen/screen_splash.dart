@@ -33,13 +33,13 @@ class ScreenSplash extends StatelessWidget {
       } else if (selectRole == '"recruiter"') {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const BottomNavRecruiter(),
+            builder: (context) =>  BottomNavRecruiter(),
           ));
         }
       } else if (selectRole == '"seeker"') {
         if (context.mounted) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const BottomNavSeeker(),
+            builder: (context) =>  BottomNavSeeker(),
           ));
         }
       }

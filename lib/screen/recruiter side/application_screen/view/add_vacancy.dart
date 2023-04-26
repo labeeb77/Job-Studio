@@ -233,7 +233,7 @@ class AddVacancyScreen extends StatelessWidget {
                              Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                         const BottomNavRecruiter()));
+                                          BottomNavRecruiter()));
                       }
                     },
                     buttonText: vacancyId != null?"Update" : "Submit"),

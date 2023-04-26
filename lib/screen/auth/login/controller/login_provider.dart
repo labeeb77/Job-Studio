@@ -41,13 +41,13 @@ class LoginProvider with ChangeNotifier {
         if (value.user.role == "recruiter") {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const BottomNavRecruiter(),
+              builder: (context) =>  BottomNavRecruiter(),
             ),
           );
         } else if (value.user.role == "seeker") {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const BottomNavSeeker(),
+              builder: (context) =>  BottomNavSeeker(),
             ),
           );
         }

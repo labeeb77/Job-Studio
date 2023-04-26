@@ -154,7 +154,7 @@ class AddRecruiterProfile extends StatelessWidget {
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const BottomNavRecruiter()),
+                                       BottomNavRecruiter()),
                               (route) => false);
                         }
                       },

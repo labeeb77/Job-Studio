@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/recruiter%20side/bottom%20nav/bottomnav_controller.dart';
+import 'package:job_studio/screen/recruiter%20side/chat_screen/view/chat.dart';
 import 'package:job_studio/screen/seeker%20side/application_screen/view/seeker_application.dart';
-import 'package:job_studio/screen/seeker%20side/chat_screen/view/seeker_chat.dart';
 import 'package:job_studio/screen/seeker%20side/explore/view/explore_screen.dart';
 import 'package:job_studio/screen/seeker%20side/home/view/seeker_home.dart';
 import 'package:job_studio/screen/seeker%20side/profile_screen/view/seeker_profile.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavSeeker extends StatelessWidget {
-  const BottomNavSeeker({super.key});
+   BottomNavSeeker({super.key});
 
-  final screens = const [
-    ExploreScreen(),
-    SeekerHomeScreen(),
-    SeekerApplicationScreen(),
+  final screens =  [
+    const ExploreScreen(),
+    const SeekerHomeScreen(),
+    const SeekerApplicationScreen(),
     SeekerChatScreen(),
-    SeekerProfile()
+    const SeekerProfile()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[Provider.of<BottomController>(context).index],
+      body: screens[Provider.of<BottomControllerSeeker>(context).index],
       bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
             indicatorColor: kGreyColor,
@@ -33,7 +33,7 @@ class BottomNavSeeker extends StatelessWidget {
               ),
             ),
           ),
-          child: Consumer<BottomController>(
+          child: Consumer<BottomControllerSeeker>(
             builder: (context, value, child) => NavigationBar(
                 selectedIndex: value.index,
                 onDestinationSelected: (index) => value.changingIndex(index),

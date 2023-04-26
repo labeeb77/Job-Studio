@@ -23,7 +23,7 @@ bool isLoading = false;
       notifyListeners();
       log(" file url is${firbaseProvider.fileUrl}");
 
-      ApplyJobService().applyForJobService(applyJobModel, jobId);
+      ApplyJobService().applyForJobService(applyJobModel, jobId,);
       
     }
     else{

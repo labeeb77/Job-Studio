@@ -5,10 +5,13 @@ import 'package:job_studio/core/colors.dart';
 import 'package:job_studio/screen/seeker%20side/explore/controller/get_uploaded_provider.dart';
 import 'package:job_studio/screen/seeker%20side/explore/model/get_uploaded_model.dart';
 import 'package:job_studio/screen/seeker%20side/explore/service/delete_uploeded.dart';
+import 'package:job_studio/screen/seeker%20side/explore/service/like_post_service.dart';
 import 'package:job_studio/screen/seeker%20side/explore/view/post_screen.dart';
+import 'package:job_studio/screen/seeker%20side/explore/view/widget/explore_shimmer.dart';
 import 'package:like_button/like_button.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shimmer/shimmer.dart';
 import 'comment_box.dart';
 
 class ExploreScreen extends StatelessWidget {
@@ -56,8 +59,20 @@ class ExploreScreen extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     )
                   : upload.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(),
+                      ? Shimmer.fromColors(
+                          baseColor: Colors.grey,
+                          highlightColor: const Color.fromARGB(255, 190, 188, 188),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: const [
+                                SizedBox(height: 10,),
+                                ExploreShimmer(),
+                                ExploreShimmer(),
+                                ExploreShimmer(),
+                                ExploreShimmer(),
+                              ],
+                            ),
+                          ),
                         )
                       : ListView.builder(
                           itemBuilder: (context, index) {
@@ -133,8 +148,27 @@ class ExploreScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(left: 6),
                                       child: Row(
                                         children: [
-                                          const LikeButton(
-                                            likeCount: 50,
+                                          LikeButton(
+                                            isLiked: upload.isLiked,
+                                            likeCount: data.likes.length,
+                                            likeBuilder: (isLiked) => Icon(
+                                              Icons.thumb_up_alt_outlined,
+                                              color:
+                                                  isLiked ? themeColor : null,
+                                            ),
+                                            onTap: (isLiked) async {
+                                              upload.isLiked = !isLiked;
+                                              upload.likedCount +=
+                                                  upload.isLiked ? 1 : -1;
+
+                                              upload.isLiked
+                                                  ? await LikePostService()
+                                                      .postLikeService(data.id)
+                                                  : await LikePostService()
+                                                      .dislikePostService(
+                                                          data.id);
+                                              return !isLiked;
+                                            },
                                             size: 26,
                                           ),
                                           IconButton(
@@ -142,20 +176,14 @@ class ExploreScreen extends StatelessWidget {
                                                 Navigator.of(context)
                                                     .push(MaterialPageRoute(
                                                   builder: (context) =>
-                                                       CommentBox(indexes: index),
+                                                      CommentBox(
+                                                          indexes: index),
                                                 ));
                                               },
                                               icon: const Icon(
                                                 Icons.comment,
                                                 color: kGreyColor,
                                               )),
-                                          const Spacer(),
-                                          IconButton(
-                                              onPressed: () {},
-                                              icon: const Icon(
-                                                Icons.bookmark_border,
-                                                color: kGreyColor,
-                                              ))
                                         ],
                                       ),
                                     ),
